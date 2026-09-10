@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>An Ka Taa — Fiche de renseignement & de contact</title>
+<meta name="description" content="Fiche de renseignement et de contact An Ka Taa — Nos racines, notre avenir." />
+
+<!-- ============================================================= -->
+<!--  ▼▼▼  À CONFIGURER (2 lignes seulement)  ▼▼▼                   -->
+<!--                                                               -->
+<!--  1) ACCESS KEY Web3Forms : crée-la gratuitement sur           -->
+<!--     https://web3forms.com  (avec l'e-mail de ta tante).       -->
+<!--     C'est cet e-mail qui recevra TOUTES les réponses.         -->
+<!--                                                               -->
+<!--  2) EMAIL de ta tante : sert uniquement d'info dans le mail   -->
+<!--     (l'envoi réel dépend de l'Access Key ci-dessus).          -->
+<!-- ============================================================= -->
+<script>
+  const WEB3FORMS_ACCESS_KEY = "COLLE-ICI-TA-CLE-WEB3FORMS"; // ← 1) clé Web3Forms
+  const EMAIL_DESTINATAIRE   = "ankataa.contact@gmail.com";  // ← 2) e-mail de ta tante
+</script>
+
+<style>
+  :root{
+    --vert:#1f6b41;
+    --vert-fonce:#14472d;
+    --dore:#d9a441;
+    --dore-clair:#f3d68a;
+    --brun:#6b4423;
+    --creme:#faf7f1;
+    --texte:#26241f;
+    --gris:#6b7280;
+    --bord:#e6e1d6;
+    --ombre:0 10px 30px rgba(20,71,45,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--texte);
+    background:
+      radial-gradient(1200px 600px at 100% -10%, #eef6f0 0, transparent 55%),
+      radial-gradient(900px 500px at -10% 110%, #fbf3df 0, transparent 55%),
+      var(--creme);
+    line-height:1.55;
+    padding:24px 16px 64px;
+  }
+  .wrap{max-width:840px;margin:0 auto}
+
+  /* ---------- En-tête ---------- */
+  header{text-align:center;padding:8px 0 24px}
+  header img{width:120px;height:auto;margin:0 auto 10px;display:block}
+  header h1{
+    font-size:clamp(1.5rem,4vw,2.2rem);
+    color:var(--vert-fonce);
+    letter-spacing:.5px;
+    font-weight:800;
+  }
+  header .sous{
+    color:var(--brun);
+    font-style:italic;
+    margin-top:6px;
+    font-size:1rem;
+  }
+  header .ruban{
+    display:inline-block;
+    margin-top:14px;
+    background:linear-gradient(90deg,var(--vert),var(--vert-fonce));
+    color:#fff;
+    padding:8px 20px;
+    border-radius:999px;
+    font-size:.85rem;
+    font-weight:600;
+    letter-spacing:.4px;
+    box-shadow:var(--ombre);
+  }
+
+  /* ---------- Carte formulaire ---------- */
+  form{
+    background:#fff;
+    border:1px solid var(--bord);
+    border-radius:var(--radius);
+    box-shadow:var(--ombre);
+    overflow:hidden;
+  }
+  .section{padding:26px 28px;border-bottom:1px solid var(--bord)}
+  .section:last-of-type{border-bottom:none}
+  .section-title{
+    display:flex;align-items:center;gap:12px;
+    margin-bottom:18px;
+  }
+  .section-title .num{
+    flex:none;
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--dore),#c98f2c);
+    color:#fff;font-weight:800;
+    display:grid;place-items:center;
+    box-shadow:0 4px 10px rgba(217,164,65,.35);
+  }
+  .section-title h2{
+    font-size:1.05rem;color:var(--vert-fonce);
+    text-transform:uppercase;letter-spacing:.6px;font-weight:800;
+  }
+
+  /* ---------- Champs ---------- */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field.full{grid-column:1 / -1}
+  label{font-size:.82rem;font-weight:600;color:var(--gris)}
+  label .req{color:#c0392b}
+  input[type=text],input[type=tel],input[type=email],input[type=date],textarea{
+    width:100%;
+    padding:12px 14px;
+    border:1.5px solid var(--bord);
+    border-radius:12px;
+    background:#fcfbf8;
+    font-size:.98rem;
+    color:var(--texte);
+    transition:border-color .15s,box-shadow .15s,background .15s;
+    font-family:inherit;
+  }
+  input:focus,textarea:focus{
+    outline:none;
+    border-color:var(--vert);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(31,107,65,.12);
+  }
+  textarea{resize:vertical;min-height:110px}
+
+  /* ---------- Cases à cocher ---------- */
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .checks.stack{grid-template-columns:1fr}
+  .check{
+    display:flex;align-items:flex-start;gap:11px;
+    padding:12px 14px;
+    border:1.5px solid var(--bord);
+    border-radius:12px;
+    background:#fcfbf8;
+    cursor:pointer;
+    transition:border-color .15s,background .15s,box-shadow .15s;
+    font-size:.94rem;
+  }
+  .check:hover{border-color:var(--dore-clair);background:#fff}
+  .check input{
+    appearance:none;-webkit-appearance:none;
+    flex:none;width:20px;height:20px;margin-top:1px;
+    border:2px solid #c9c2b2;border-radius:6px;
+    background:#fff;cursor:pointer;position:relative;
+    transition:all .15s;
+  }
+  .check input:checked{background:var(--vert);border-color:var(--vert)}
+  .check input:checked::after{
+    content:"";position:absolute;left:5px;top:1px;
+    width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;
+    transform:rotate(45deg);
+  }
+  .check:has(input:checked){border-color:var(--vert);background:#f1f8f3}
+
+  .autre-inline{margin-top:12px}
+
+  /* ---------- Bouton ---------- */
+  .actions{padding:26px 28px 30px;text-align:center;background:#fbfaf6}
+  button[type=submit]{
+    background:linear-gradient(135deg,var(--vert),var(--vert-fonce));
+    color:#fff;border:none;
+    padding:15px 40px;
+    font-size:1.05rem;font-weight:700;
+    border-radius:999px;cursor:pointer;
+    box-shadow:0 10px 22px rgba(20,71,45,.28);
+    transition:transform .12s,box-shadow .12s,opacity .12s;
+    letter-spacing:.3px;
+  }
+  button[type=submit]:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(20,71,45,.34)}
+  button[type=submit]:active{transform:translateY(0)}
+  button[type=submit]:disabled{opacity:.6;cursor:not-allowed;transform:none}
+  .rgpd-note{margin-top:14px;font-size:.78rem;color:var(--gris)}
+
+  /* ---------- Messages ---------- */
+  .msg{display:none;margin:0 28px 4px;padding:14px 18px;border-radius:12px;font-weight:600;font-size:.95rem}
+  .msg.ok{display:block;background:#e9f7ee;color:#1f6b41;border:1.5px solid #bfe6cd}
+  .msg.err{display:block;background:#fdecea;color:#c0392b;border:1.5px solid #f5c6c0}
+
+  /* ---------- Pied ---------- */
+  footer{
+    text-align:center;margin-top:26px;
+    color:var(--brun);font-size:.85rem;line-height:1.7;
+  }
+  footer strong{color:var(--vert-fonce)}
+
+  /* Honeypot */
+  .hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+
+  @media(max-width:640px){
+    .grid,.checks{grid-template-columns:1fr}
+    .section{padding:22px 18px}
+    .actions{padding:22px 18px 26px}
+    .msg{margin:0 18px 4px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="logo.png" alt="Logo An Ka Taa" />
+    <h1>Fiche de renseignement &amp; de contact</h1>
+    <p class="sous">An Ka Taa — Nos racines, notre avenir</p>
+    <span class="ruban">Salon / Événement</span>
+  </header>
+
+  <!-- messages -->
+  <div id="msgOk" class="msg">✅ Merci ! Votre fiche a bien été envoyée. Nous vous recontacterons rapidement.</div>
+  <div id="msgErr" class="msg">❌ Une erreur est survenue. Merci de réessayer dans un instant.</div>
+
+  <form id="fiche" novalidate>
+
+    <!-- champs techniques Web3Forms -->
+    <input type="hidden" name="access_key" id="accessKey" />
+    <input type="hidden" name="subject" value="Nouvelle fiche de contact — An Ka Taa" />
+    <input type="hidden" name="from_name" value="Formulaire An Ka Taa" />
+    <!-- honeypot anti-spam -->
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" />
+
+    <!-- 1. COORDONNÉES -->
+    <div class="section">
+      <div class="section-title"><span class="num">1</span><h2>Vos coordonnées</h2></div>
+      <div class="grid">
+        <div class="field">
+          <label>Nom / Prénom <span class="req">*</span></label>
+          <input type="text" name="Nom / Prénom" required />
+        </div>
+        <div class="field">
+          <label>Téléphone <span class="req">*</span></label>
+          <input type="tel" name="Téléphone" required />
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" name="E-mail" />
+        </div>
+        <div class="field">
+          <label>Ville / Commune</label>
+          <input type="text" name="Ville / Commune" />
+        </div>
+        <div class="field">
+          <label>Structure / Organisation</label>
+          <input type="text" name="Structure / Organisation" />
+        </div>
+        <div class="field">
+          <label>Fonction</label>
+          <input type="text" name="Fonction" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. CE QUI VOUS INTÉRESSE -->
+    <div class="section">
+      <div class="section-title"><span class="num">2</span><h2>Ce qui vous intéresse</h2></div>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de Bambara"><span>Cours de Bambara</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de Soninké"><span>Cours de Soninké</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de Wolof"><span>Cours de Wolof</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de cuisine"><span>Cours de cuisine</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de danse"><span>Cours de danse</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de coiffure"><span>Cours de coiffure</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours de henné"><span>Cours de henné</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Cours d'éveil"><span>Cours d'éveil</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Activités culturelles"><span>Activités culturelles</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Actions solidaires / citoyennes"><span>Actions solidaires / citoyennes</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Partenariat / collaboration"><span>Partenariat / collaboration</span></label>
+        <label class="check"><input type="checkbox" name="Intérêts" value="Interventions en collectivité"><span>Interventions en collectivité</span></label>
+      </div>
+      <div class="field autre-inline">
+        <label>Autre</label>
+        <input type="text" name="Autre (intérêt)" placeholder="Précisez si besoin…" />
+      </div>
+    </div>
+
+    <!-- 3. RECONTACT -->
+    <div class="section">
+      <div class="section-title"><span class="num">3</span><h2>Pour mieux vous recontacter</h2></div>
+      <div class="checks stack">
+        <label class="check"><input type="checkbox" name="Recontact" value="Recevoir des informations sur les prochains cours"><span>Je souhaite recevoir des informations sur les prochains cours.</span></label>
+        <label class="check"><input type="checkbox" name="Recontact" value="Être recontacté(e) pour un projet ou un partenariat"><span>Je souhaite être recontacté(e) pour un projet ou un partenariat.</span></label>
+        <label class="check"><input type="checkbox" name="Recontact" value="Être informé(e) des événements et actions d'An Ka Taa"><span>Je souhaite être informé(e) des événements et actions d'An Ka Taa.</span></label>
+      </div>
+    </div>
+
+    <!-- 4. LIEU DE RENCONTRE -->
+    <div class="section">
+      <div class="section-title"><span class="num">4</span><h2>Lieu de rencontre</h2></div>
+      <div class="grid">
+        <div class="field full">
+          <label>Lieu / Salon / Structure</label>
+          <input type="text" name="Lieu / Salon / Structure" />
+        </div>
+        <div class="field">
+          <label>Ville</label>
+          <input type="text" name="Ville (rencontre)" />
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="date" name="Date (rencontre)" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. NOTES -->
+    <div class="section">
+      <div class="section-title"><span class="num">5</span><h2>Notes / Échange</h2></div>
+      <div class="field full">
+        <textarea name="Notes / Échange" placeholder="Vos remarques, besoins, questions…"></textarea>
+      </div>
+    </div>
+
+    <!-- 6. AUTORISATION -->
+    <div class="section">
+      <div class="section-title"><span class="num">6</span><h2>Autorisation de contact</h2></div>
+      <div class="checks stack">
+        <label class="check"><input type="checkbox" name="Autorisation" value="Oui, j'accepte" required><span>J'accepte que mes coordonnées soient utilisées par An Ka Taa uniquement afin de me recontacter dans le cadre des informations, activités, cours ou propositions de partenariat présentées par l'association. <span class="req">*</span></span></label>
+      </div>
+      <div class="grid" style="margin-top:16px">
+        <div class="field">
+          <label>Date</label>
+          <input type="date" name="Date (signature)" />
+        </div>
+        <div class="field">
+          <label>Signature (nom pour validation)</label>
+          <input type="text" name="Signature" placeholder="Votre nom" />
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="submit" id="btn">Envoyer ma fiche</button>
+      <p class="rgpd-note">Vos données restent confidentielles et ne sont utilisées que par An Ka Taa.</p>
+    </div>
+  </form>
+
+  <footer>
+    <strong>An Ka Taa</strong> — 16 rue Julien Mocquard, 92230 Gennevilliers<br />
+    06 33 85 61 64 — ankataa.contact@gmail.com
+  </footer>
+
+</div>
+
+<script>
+  // Injecte les 2 réglages du haut de page
+  document.getElementById("accessKey").value = WEB3FORMS_ACCESS_KEY;
+
+  const form   = document.getElementById("fiche");
+  const btn    = document.getElementById("btn");
+  const msgOk  = document.getElementById("msgOk");
+  const msgErr = document.getElementById("msgErr");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    msgOk.className = "msg";
+    msgErr.className = "msg";
+
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY.startsWith("COLLE-ICI")) {
+      msgErr.textContent = "⚙️ Configuration manquante : ajoutez votre clé Web3Forms dans le code.";
+      msgErr.className = "msg err";
+      return;
+    }
+
+    btn.disabled = true;
+    const original = btn.textContent;
+    btn.textContent = "Envoi en cours…";
+
+    // Prépare les données (regroupe les cases cochées en texte lisible)
+    const fd = new FormData(form);
+    const data = {};
+    for (const [k, v] of fd.entries()) {
+      if (v === "" || v === "on") continue;
+      data[k] = data[k] ? data[k] + ", " + v : v;
+    }
+    data.email_destinataire_info = EMAIL_DESTINATAIRE;
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+      if (json.success) {
+        msgOk.className = "msg ok";
+        form.reset();
+        msgOk.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        throw new Error(json.message || "Échec");
+      }
+    } catch (err) {
+      msgErr.textContent = "❌ Une erreur est survenue. Merci de réessayer dans un instant.";
+      msgErr.className = "msg err";
+    } finally {
+      btn.disabled = false;
+      btn.textContent = original;
+    }
+  });
+</script>
+</body>
+</html>
